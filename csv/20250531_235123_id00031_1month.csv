@@ -1,0 +1,33 @@
+sep=;
+Datum/Uhrzeit;Verbrauchswert;Einheit;Verbrauch in Euro;Einheit;CO2-Ausstoss;Einheit;;Ansicht:;Datum;;1 Monat;31.05.2025 23:51 Uhr
+01.05;1,693;kWh;0,71;Euro;0,931;kg CO2
+02.05;1,275;kWh;0,54;Euro;0,701;kg CO2
+03.05;0,412;kWh;0,17;Euro;0,227;kg CO2
+04.05;1,246;kWh;0,52;Euro;0,685;kg CO2
+05.05;0,961;kWh;0,40;Euro;0,529;kg CO2
+06.05;1,423;kWh;0,60;Euro;0,783;kg CO2
+07.05;2,031;kWh;0,85;Euro;1,117;kg CO2
+08.05;1,969;kWh;0,83;Euro;1,083;kg CO2
+09.05;0,265;kWh;0,11;Euro;0,146;kg CO2
+10.05;0,136;kWh;0,06;Euro;0,075;kg CO2
+11.05;0,137;kWh;0,06;Euro;0,075;kg CO2
+12.05;1,527;kWh;0,64;Euro;0,840;kg CO2
+13.05;1,888;kWh;0,79;Euro;1,038;kg CO2
+14.05;1,891;kWh;0,79;Euro;1,040;kg CO2
+15.05;1,915;kWh;0,80;Euro;1,053;kg CO2
+16.05;1,616;kWh;0,68;Euro;0,889;kg CO2
+17.05;0,232;kWh;0,10;Euro;0,128;kg CO2
+18.05;0,545;kWh;0,23;Euro;0,300;kg CO2
+19.05;0,152;kWh;0,06;Euro;0,084;kg CO2
+20.05;0,138;kWh;0,06;Euro;0,076;kg CO2
+21.05;0,137;kWh;0,06;Euro;0,075;kg CO2
+22.05;0,138;kWh;0,06;Euro;0,076;kg CO2
+23.05;0,143;kWh;0,06;Euro;0,079;kg CO2
+24.05;1,306;kWh;0,55;Euro;0,718;kg CO2
+25.05;0,887;kWh;0,37;Euro;0,488;kg CO2
+26.05;1,763;kWh;0,74;Euro;0,970;kg CO2
+27.05;1,750;kWh;0,73;Euro;0,963;kg CO2
+28.05;1,909;kWh;0,80;Euro;1,050;kg CO2
+29.05;1,279;kWh;0,54;Euro;0,703;kg CO2
+30.05;1,591;kWh;0,67;Euro;0,875;kg CO2
+31.05;1,695;kWh;0,71;Euro;0,932;kg CO2
