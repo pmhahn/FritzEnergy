@@ -16,6 +16,7 @@ from pathlib import Path
 from typing import ClassVar, Self
 
 from intervaltree import IntervalTree
+
 try:
     import matplotlib.pyplot as plt
 except ImportError:
@@ -375,6 +376,11 @@ def parse_args() -> Namespace:
         action="store_true",
         help="Output raw values",
     )
+    parser.add_argument(
+        "--zero", "-z",
+        action="store_true",
+        help="Output zero values",
+    )
     if plt:
         parser.add_argument(
             "--plot", "-p",
@@ -458,18 +464,25 @@ def main() -> None:
 
     total = 0.0
     dates, values = [], []
+    begin: datetime | None = None
     for rec in sorted(data):
         start, end, data = rec
         span = end - start
         h, m = divmod(span.seconds // 60, 60)
 
         usage = data.values.usage * (span / data.span)
-        total += usage
         if args.raw:
             print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
+        if not (usage or args.zero):
+            begin = start
+            continue
+        total += usage
         if args.output:
             args.output.write(f"{end:%Y-%m-%d %H:%M}\t{total:10.0f}\n")
         if args.plot:
+            if not dates and begin is not None:
+                dates.append(begin)
+                values.append(0.0)
             dates.append(end)
             values.append(total)
 
