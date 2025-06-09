@@ -370,6 +370,11 @@ def parse_args() -> Namespace:
         type=FileType("w"),
         help="Write accumulated data",
     )
+    parser.add_argument(
+        "--raw", "-r",
+        action="store_true",
+        help="Output raw values",
+    )
     if plt:
         parser.add_argument(
             "--plot", "-p",
@@ -460,13 +465,13 @@ def main() -> None:
 
         usage = data.values.usage * (span / data.span)
         total += usage
+        if args.raw:
+            print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
+        if args.output:
+            args.output.write(f"{end:%Y-%m-%d %H:%M}\t{total:10.0f}\n")
         if args.plot:
             dates.append(end)
             values.append(total)
-        if args.output:
-            args.output.write(f"{end:%Y-%m-%d %H:%M}\t{total:10.0f}\n")
-        else:
-            print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
 
     if plt and args.plot:
         fig, ax = plt.subplots()
