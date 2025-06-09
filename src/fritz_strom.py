@@ -439,7 +439,9 @@ def main() -> None:
         start, end, data = rec
         span = end - start
         h, m = divmod(span.seconds // 60, 60)
-        print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{data.values.usage:10.0f}")
+
+        usage = data.values.usage * (span / data.span)
+        print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
 
 
 if __name__ == "__main__":
