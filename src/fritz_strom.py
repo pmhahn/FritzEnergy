@@ -9,7 +9,7 @@ from __future__ import annotations
 import csv
 import re
 import sys
-from argparse import ArgumentParser, Namespace
+from argparse import ArgumentParser, FileType, Namespace
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -362,6 +362,11 @@ def parse_args() -> Namespace:
         help="Enable verbose output",
     )
     parser.add_argument(
+        "--output", "-o",
+        type=FileType("w"),
+        help="Write accumulated data",
+    )
+    parser.add_argument(
         "files",
         type=Path,
         nargs="+",
@@ -435,13 +440,19 @@ def main() -> None:
     args = parse_args()
     data = parse_csv(args)
     reduce(args, data)
+
+    total = 0.0
     for rec in sorted(data):
         start, end, data = rec
         span = end - start
         h, m = divmod(span.seconds // 60, 60)
 
         usage = data.values.usage * (span / data.span)
-        print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
+        total += usage
+        if args.output:
+            args.output.write(f"{end:%Y-%m-%d %H:%M}\t{total:10.0f}\n")
+        else:
+            print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
 
 
 if __name__ == "__main__":
