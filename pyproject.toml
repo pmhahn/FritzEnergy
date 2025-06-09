@@ -26,6 +26,12 @@ classifiers = [
 [project.scripts]
 fritz-strom = "fritz_strom:main"
 
+[project.optional-dependencies]
+plt = [
+    "matplotlib>=3.10.3",
+    "pyside6>=6.9.1",
+]
+
 [tool.ruff]
 line-length = 88
 indent-width = 4

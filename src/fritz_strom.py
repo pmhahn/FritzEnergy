@@ -16,6 +16,10 @@ from pathlib import Path
 from typing import ClassVar, Self
 
 from intervaltree import IntervalTree
+try:
+    import matplotlib.pyplot as plt
+except ImportError:
+    plt = None
 
 RE_FN1 = re.compile(
     r"""
@@ -366,6 +370,12 @@ def parse_args() -> Namespace:
         type=FileType("w"),
         help="Write accumulated data",
     )
+    if plt:
+        parser.add_argument(
+            "--plot", "-p",
+            action="store_true",
+            help="Plot values",
+        )
     parser.add_argument(
         "files",
         type=Path,
@@ -442,6 +452,7 @@ def main() -> None:
     reduce(args, data)
 
     total = 0.0
+    dates, values = [], []
     for rec in sorted(data):
         start, end, data = rec
         span = end - start
@@ -449,10 +460,18 @@ def main() -> None:
 
         usage = data.values.usage * (span / data.span)
         total += usage
+        if args.plot:
+            dates.append(end)
+            values.append(total)
         if args.output:
             args.output.write(f"{end:%Y-%m-%d %H:%M}\t{total:10.0f}\n")
         else:
             print(f"{start:%Y-%m-%d %H:%M}\t{span.days:2}d{h:2}h{m:2}m\t{usage:10.0f}")
+
+    if plt and args.plot:
+        fig, ax = plt.subplots()
+        ax.plot(dates, values)
+        plt.show()
 
 
 if __name__ == "__main__":
