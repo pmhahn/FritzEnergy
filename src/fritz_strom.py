@@ -362,28 +362,33 @@ class Year(Parser):
 def parse_args() -> Namespace:
     parser = ArgumentParser(description=__doc__)
     parser.add_argument(
-        "--verbose", "-v",
+        "--verbose",
+        "-v",
         action="store_true",
         help="Enable verbose output",
     )
     parser.add_argument(
-        "--output", "-o",
+        "--output",
+        "-o",
         type=FileType("w"),
         help="Write accumulated data",
     )
     parser.add_argument(
-        "--raw", "-r",
+        "--raw",
+        "-r",
         action="store_true",
         help="Output raw values",
     )
     parser.add_argument(
-        "--zero", "-z",
+        "--zero",
+        "-z",
         action="store_true",
         help="Output zero values",
     )
     if plt:
         parser.add_argument(
-            "--plot", "-p",
+            "--plot",
+            "-p",
             action="store_true",
             help="Plot values",
         )
@@ -418,7 +423,7 @@ def parse_csv(args: Namespace) -> IntervalTree:
                 rec = parser.parse(row)
                 if args.verbose:
                     print(rec)
-                tree[rec.start:rec.end] = rec  # type: ignore[misc]
+                tree[rec.start : rec.end] = rec  # type: ignore[misc]
 
     return tree
 

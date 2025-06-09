@@ -38,4 +38,4 @@ indent-width = 4
 
 [tool.ruff.lint]
 select = ["ALL"]
-ignore = ["T20", "D", "E501", "S101" ,"ERA", "DTZ"]
+ignore = ["T20", "D", "E501", "S101" ,"ERA", "DTZ", "COM812"]
