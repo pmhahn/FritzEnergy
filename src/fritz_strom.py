@@ -251,11 +251,13 @@ class Week(Parser):
     SPAN = "1 Woche"
 
     WD: ClassVar[dict[str, int]] = {
-        f"{wd}.": val
-        for val, wd in enumerate(
-            ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
-            start=0,
-        )
+        "Mo.": 0,
+        "Di.": 1,
+        "Mi.": 2,
+        "Do.": 3,
+        "Fr.": 4,
+        "Sa.": 5,
+        "So.": 6,
     }
 
     def parse_date(self, date: str) -> datetime:
@@ -325,11 +327,18 @@ class Year(Parser):
     SPAN = "2 Jahre"
 
     MONTH: ClassVar[dict[str, int]] = {
-        mon: val
-        for val, mon in enumerate(
-            ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"],
-            start=1,
-        )
+        "Januar": 1,
+        "Februar": 2,
+        "März": 3,
+        "April": 4,
+        "Mai": 5,
+        "Juni": 6,
+        "Juli": 7,
+        "August": 8,
+        "September": 9,
+        "Oktober": 10,
+        "November": 11,
+        "Dezember": 12,
     }
 
     def parse_date(self, date: str) -> datetime:
