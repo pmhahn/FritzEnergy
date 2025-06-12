@@ -468,7 +468,8 @@ def main() -> None:
     reduce(args, data)
 
     total = 0.0
-    dates, values = [], []
+    dates: list[datetime] = []
+    values: list[float] = []
     begin: datetime | None = None
     for rec in sorted(data):
         start, end, data = rec
